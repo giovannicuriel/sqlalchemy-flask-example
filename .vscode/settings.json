@@ -1,0 +1,4 @@
+{
+    "restructuredtext.confPath": "${workspaceFolder}/docs/source",
+    "python.pythonPath": "/home/giovanni.santos/.local/share/virtualenvs/sqlalchemy-flask-example-JanQ8wg3/bin/python"
+}
