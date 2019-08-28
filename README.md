@@ -1,3 +1,4 @@
 # sqlalchemy-flask-example
 
-This repository will show how to use SQLAlchemy and Flask.
+Este é um repositório de exemplo para mostrar o uso do SQLAlchemy e o Flask.
+Todos os códigos estão dentro da pasta `Demo'.
