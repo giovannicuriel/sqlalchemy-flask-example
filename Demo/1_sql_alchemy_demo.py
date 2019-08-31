@@ -11,11 +11,12 @@ De acordo com o Wikipedia:
    tipados incompatíveis usando linguagens de programação orientadas a objeto.
 
 Como se pode concluir, ela é bastante apropriada para acessos a banco de dados.
-Ao invés de escrever instruções de SQL longas e complexas, além de várias linhas
-de código apenas para obter dados de uma tabela em particular (o que incluiria não
-somente as instruções SQL mas também verificação de nomes de colunas e tipos de dados, incluindo
-as suas relações com outras tabelas), quel tal criar um objeto Python e inseri-lo
-diretamente no banco de dados? Um exemplo:
+Ao invés de escrever instruções de SQL longas e complexas, além de várias
+linhas de código apenas para obter dados de uma tabela em particular (o que
+incluiria não somente as instruções SQL mas também verificação de nomes de
+colunas e tipos de dados, incluindo as suas relações com outras tabelas), quel
+tal criar um objeto Python e inseri-lo diretamente no banco de dados? Um
+exemplo:
 
 .. code-block::python
 
@@ -27,9 +28,10 @@ diretamente no banco de dados? Um exemplo:
 Sem aporrinhações, sem códigos extras, sem chamadas específicas para o banco de
 dados, apenas mágica.
 
-Neste tutorial, nós construiremos um serviço de gerenciamento de perfis de usuários
-bastante simples, apenas para mostrar e validar algumas funcionalidades básicas
-do SQLAlchemy.
+Neste tutorial, nós construiremos um serviço de gerenciamento de perfis de
+usuários bastante simples, apenas para mostrar e validar algumas
+funcionalidades básicas do SQLAlchemy.
+
 """
 
 from sqlalchemy import create_engine
