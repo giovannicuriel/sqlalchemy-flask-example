@@ -40,24 +40,31 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import sessionmaker
 
 """
+
 Antes de mais nada: embora o SQLAlchemy possua propriedades mágicas e exponha
-uma API interessante e fácil de usar para modelamento de entidades, ele necessita
-acessar um banco de dados. Esta chamada criará uma instância do SQLite em memória.
-Caso outro banco de dados seja necessário, ela poderia ser referenciada aqui
-através de uma URI apropriada, como `mysql://antonio:superpasswd@server/table`.
+uma API interessante e fácil de usar para modelamento de entidades, ele
+necessita acessar um banco de dados. Esta chamada criará uma instância do
+SQLite em memória. Caso outro banco de dados seja necessário, ela poderia ser
+referenciada aqui através de uma URI apropriada, como
+`mysql://antonio:superpasswd@server/table`.
+
 """
 database_engine = create_engine('sqlite:///:memory:')
 
 """
-Esta `declarative_base` cria uma classe base para a definição de modelos. Ela
-é a razão pela qual é possível declarar atributos de classes que são mapeadas
+
+Esta `declarative_base` cria uma classe base para a definição de modelos. Ela é
+a razão pela qual é possível declarar atributos de classes que são mapeadas
 diretamente em colunas em tabelas.
+
 """
 Base = declarative_base()
  
 """
+
 Aqui definimos a nossa classe. Ela é associada a uma tabela através do atributo
 `__tablename__`.
+
 """
 class UserProfile(Base):
     __tablename__ = "UserProfiles"
@@ -68,30 +75,37 @@ class UserProfile(Base):
     Age = Column(Integer)
 
 """
-Por fim, a amarração entre a definição do modelo de dados e o banco de dados.
-O atributo `bind`, configurado abaixo, indica à classe base que criamos
-anteriormente qual deve ser o banco de dados a ser utilizado. A chamada `create_all()`
-é quase autoexplicativa: ela envia comandos ao banco de dados para a criação de
-todos os recursos necessários para que os dados definidos nas classes derivadas
-de `Base` possam ser armazenados corretamente.
+
+Por fim, a amarração entre a definição do modelo de dados e o banco de dados. O
+atributo `bind`, configurado abaixo, indica à classe base que criamos
+anteriormente qual deve ser o banco de dados a ser utilizado. A chamada
+`create_all()` é quase autoexplicativa: ela envia comandos ao banco de dados
+para a criação de todos os recursos necessários para que os dados definidos nas
+classes derivadas de `Base` possam ser armazenados corretamente.
+
 """
 Base.metadata.bind = database_engine        
 Base.metadata.create_all()
 
 
 """
-Aqui iniciamos o uso das coisas que criamos e configuramos anteriormente.
-A sessão serve para armazenar todas as operações necessárias no banco de dados,
+
+Aqui iniciamos o uso das coisas que criamos e configuramos anteriormente. A
+sessão serve para armazenar todas as operações necessárias no banco de dados,
 como inserção e remoção de itens.
+
 """        
 Session = sessionmaker(bind=database_engine)
 db_session = Session()
 
 """
+
 Para usá-la, basta chamar uma de suas funções fornecidas pela API. Por exemplo,
-a função `add_all` recebe uma lista de objetos (repare que os objetos são construídos
-na definição desta lista) que derivam de `Base`. Note que estes objetos não possuem
-nenhuma característica especial além de serem classes filhas de `Base`.
+a função `add_all` recebe uma lista de objetos (repare que os objetos são
+construídos na definição desta lista) que derivam de `Base`. Note que estes
+objetos não possuem nenhuma característica especial além de serem classes
+filhas de `Base`.
+
 """
 db_session.add_all(
    [
@@ -100,17 +114,20 @@ db_session.add_all(
    ])
 
 """
+
 Para executar todas as operações pendentes, devemos chamar a função `commit()`.
+
 """
 db_session.commit()
 
 """
 E é isso.
 Vamos ler todas as informações armazenadas até agora.
-Repare que o parâmetro passado para a função `query` é o nome da classe associada
-aos itens que desejamos obter. O SQLAlchemy identifica qual tabela ele deve
-pesquisar e criar uma lista de objetos contendo os dados que foram mapeados na
-classe.
+Repare que o parâmetro passado para a função `query` é o nome da classe
+associada aos itens que desejamos obter. O SQLAlchemy identifica qual tabela
+ele deve pesquisar e criar uma lista de objetos contendo os dados que foram
+mapeados na classe.
+
 """
 
 query_results = db_session.query(UserProfile).all()
