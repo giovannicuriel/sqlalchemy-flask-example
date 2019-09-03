@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+<div>
+    {% for ctegory in categories %}
+    <div class="row">
+        <div class="col-8">
+            <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">{{ category.name }}</a>
+            </div>
+        </div>
+    </div>
+  {% endfor %}
+<div>

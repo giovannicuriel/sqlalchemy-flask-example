@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block main %}
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+<div class="container">
+    <h1 class="display-3">Dextraflix!!</h1>
+    <p>O lugar pra você que precisa ver aquele treinamento que nunca bate com a sua agenda.</p>
+    <p><a class="btn btn-primary btn-lg" href="/gravacoes" role="button">Comece aqui! &raquo;</a></p>
+</div>
+</div>
+
+<div class="container">
+<!-- Example row of columns -->
+<div class="row">
+    <div class="col-md-4">
+    <h2>Gravações</h2>
+    <p>Acesse as gravações nesta sessão <br />&nbsp;</p>
+    <p><a class="btn btn-secondary" href="/gravacoes" role="button">Ver mais &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+    <h2>Autores</h2>
+    <p>Apresentação de todos os criadores de conteúdo.</p>
+    <p><a class="btn btn-secondary" href="/autores" role="button">Ver mais &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+    <h2>Sobre</h2>
+    <p>Sistema desenvolvido inicialmente na Guilda Python com Flask e SQL Alchemy.</p>
+    </div>
+</div>
+
+<hr>
+
+</div>
+{% endblock %}
