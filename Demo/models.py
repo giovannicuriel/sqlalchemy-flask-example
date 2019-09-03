@@ -24,3 +24,19 @@ class UserProfile(Base):
             "LastName": self.LastName,
             "Age": self.Age
         }
+
+class Gravacao(Base):
+    __tablename__ = "Gravacoes"
+ 
+    Id = Column(Integer, primary_key=True, autoincrement=True)
+    Link = Column(String)
+    Categoria = Column(String)
+    Nome = Column(String)  
+
+    def to_dict(self):
+        return {
+            "Id": self.Id,
+            "Link": self.Link,
+            "Categoria": self.Categoria,
+            "Nome": self.Nome
+        }

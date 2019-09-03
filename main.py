@@ -1,4 +1,6 @@
 from flask import Flask, escape, request, render_template
+from Demo.db import init_db
+from Demo.models import Gravacao
 
 app = Flask(__name__)
 
@@ -6,13 +8,15 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
     
+db_session = init_db()
     
 @app.route('/gravacoes')
 def gravacoes():
     """
     Aqui deve ser implementada a listagem de categorias de gravações
     """
-    categorias = []
+    categorias = db_session.query(Gravacao).all()    
+
     render_template('gravacoes.html', categorias=categorias)
     
 @app.route('/gravacoes/<categoria>')
@@ -42,3 +46,6 @@ def autor(slug):
     render_template('autor.html', autores=autores)
     
     
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')

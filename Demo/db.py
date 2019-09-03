@@ -54,7 +54,7 @@ def init_db():
     referenciada aqui através de uma URI apropriada, como
     `mysql://antonio:superpasswd@server/table`.
     """
-    database_engine = create_engine('sqlite:////tmp/db.sqlite')
+    database_engine = create_engine('sqlite:////home/giovanni.santos/Desenvolvimento/code/source/open-source/sqlalchemy-flask-example/db.sqlite')
     
     """
     Por fim, a amarração entre a definição do modelo de dados e o banco de dados. O

@@ -7,6 +7,7 @@ from flask import Flask
 from flask import request, make_response
 from Demo.controller import add_profile, get_profiles
 from Demo.db import init_db
+from Demo.models import Gravacao
 import json
 
 """
@@ -70,6 +71,41 @@ def retrieve_list():
     payload = json.dumps({"message": "ok!", 'items': profiles})
     status = 200
     return make_response(payload, status)
+
+"""
+"gravacao": {
+    "id": 1237,
+    "link": "https://youtube.com/jjl",
+    "categoria": "guilda",
+    "nome": "guilda de python"
+}
+"""
+lista = []
+
+@app.route('/gravacoes', methods=['GET'])
+def obterGravacoes():
+    query_results = db_session.query(Gravacao).all()    
+    results = []
+
+    for item in query_results:
+        results.append(item.to_dict())
+    print(results)
+    
+    payload = json.dumps({"message": "ok!", 'lista': results})
+    return make_response(payload, 200)
+
+@app.route('/gravacoes', methods=['POST'])
+def criarGravacao():
+    print('request', request.json)
+
+    gravacao = Gravacao(**request.json)
+    db_session.add(gravacao)
+    db_session.commit()    
+
+    lista.append(gravacao)
+
+    payload = json.dumps({"message": "ok!"})
+    return make_response(payload, 200)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
