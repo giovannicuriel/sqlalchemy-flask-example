@@ -1,6 +1,9 @@
 from flask import Flask, escape, request, render_template
+from Demo.db import init_db
+from controller import get_all
 
 app = Flask(__name__)
+db_session = init_db()
 
 @app.route('/')
 def index():
@@ -24,13 +27,15 @@ def categoria(categoria):
     render_template('categoria.html', categoria=categoria)
 
 
-@app.route('/autores')
+@app.route('/autores', methods=['GET', 'POST'])
 def autores():
+    if (request.method == 'POST'):
+        insert(db_session, request.body)
     """
     Aqui deve ser implementada a listagem de autores
     """
-    autores = []
-    render_template('autores.html', autores=autores)
+    autores = get_all(db_session)
+    return render_template('autores.html', autores=autores)
     
 
 @app.route('/autores/<slug>')
@@ -42,3 +47,6 @@ def autor(slug):
     render_template('autor.html', autores=autores)
     
     
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True)

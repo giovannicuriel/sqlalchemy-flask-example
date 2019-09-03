@@ -1,8 +1,15 @@
-<html>
-  <head>
-    <title></title>
-    <meta content="">
-    <style></style>
-  </head>
-  <body></body>
-</html>
+{% extends "base.html" %}
+
+{% block main %}
+  <div>
+    {% for autor in autores %}
+      <div class="row">
+        <div class="col-8">
+          <div class="list-group" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">{{ autor.Name }}</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  <div>
+{% endblock %}
